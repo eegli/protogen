@@ -6,7 +6,7 @@ As opposed to other projects like [protobuf-ts](https://github.com/timostamm/pro
 
 ### What does it do?
 
-It facilitates code generation for [gRPC-web](https://github.com/grpc/grpc-web#code-generator-plugin) and [protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript). Running this command:
+It facilitates code generation for [gRPC-web](https://github.com/grpc/grpc-web#code-generator-plugin) and [protobuf-javascript](https://github.com/protocolbuffers/protobuf-javascript). Running the example command from the [grpc/grpc-web](https://github.com/grpc/grpc-web#code-generator-plugin) repository
 
 ```bash
 protoc -I=$DIR echo.proto \
@@ -18,7 +18,7 @@ requires (1) the `protoc` compiler (`protoc`), (2) the `protoc-gen-js` plugin (`
 
 ### How does it do it?
 
-This project builds a temporary Docker container with all the binaries, then uses the local (i.e., host) `.proto` files for code generation finally copies the generated files back to the host.
+This project builds a temporary Docker container with all the binaries, then uses the local (i.e., host) `.proto` files for code generation and finally copies the generated files back to the host.
 
 ### Usage
 
@@ -27,7 +27,7 @@ This project builds a temporary Docker container with all the binaries, then use
 ```
 
 - `<proto_input_dir>`: Relative input directory with `.proto` files. Required.
-- `<proto_output_dir>`: Relative directory to save the output `.proto` files. Defaults to `gen/proto`
+- `<proto_output_dir>`: Relative directory to save the output `.proto` files. Defaults to `gen/proto`.
 
 ### Examples
 

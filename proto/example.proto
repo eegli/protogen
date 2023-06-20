@@ -1,3 +1,5 @@
+// Dummy .proto code for demonstration
+
 syntax = "proto3";
 
 package test;
