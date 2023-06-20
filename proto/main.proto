@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package test;
+
+service Test {
+  rpc greet(GreetRequest) returns (GreetResponse);
+}
+
+message GreetRequest {
+  optional string name = 1;
+}
+
+message GreetResponse {
+  repeated int32 whatever = 1;
+}
