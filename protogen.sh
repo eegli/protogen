@@ -16,23 +16,32 @@ else
     echo "Using output directory $OUT_DIR"
 fi
 
-# temporary container name
-C=protogen_tmp
+# Feel free to adjust versions
+V_COMPILER=23.3
+V_PLUGIN_JS=3.21.2
+V_PLUGIN_GRPC=1.4.2
 
-# image name
-I=protogen
+# Temporary container name
+CONTAINER_NAME=protogen_tmp
+
+# Image name
+IMAGE=protogen
 
 echo "Generating TS proto files..."
 
-docker build -t $I .
+# Pass in versions as build args
+docker build -t $IMAGE . \
+    --build-arg V_COMPILER=$V_COMPILER \
+    --build-arg V_PLUGIN_JS=$V_PLUGIN_JS \
+    --build-arg V_PLUGIN_GRPC=$V_PLUGIN_GRPC
 
-docker run -t -d --rm --name $C $I
+docker run -t -d --rm --name $CONTAINER_NAME $IMAGE
 
-docker cp $IN_DIR $C:/.local/_proto_in
+docker cp $IN_DIR $CONTAINER_NAME:/.local/_proto_in
 
-docker exec -it $C bash -c "mkdir _proto_out"
+docker exec -it $CONTAINER_NAME bash -c "mkdir _proto_out"
 
-docker exec -it $C bash -c "protoc \
+docker exec -it $CONTAINER_NAME bash -c "protoc \
   --js_out=import_style=commonjs,binary:_proto_out \
   --grpc-web_out=import_style=typescript,mode=grpcweb:_proto_out \
   -I _proto_in \
@@ -40,8 +49,8 @@ docker exec -it $C bash -c "protoc \
 
 mkdir -p  $OUT_DIR
 
-docker cp $C:/.local/_proto_out/. $OUT_DIR
+docker cp $CONTAINER_NAME:/.local/_proto_out/. $OUT_DIR
 
-echo "Exiting container $C..."
-docker stop $C >/dev/null
+echo "Exiting container $CONTAINER_NAME..."
+docker stop $CONTAINER_NAME >/dev/null
 echo "Done. Proto files saved to $PWD/$OUT_DIR"
