@@ -1,4 +1,4 @@
-# Protogen - Protobuf/gRPC Web Wizard
+# Protogen - Protobuf/gRPC-Web Wizard
 
 Generating client/server code for gRPC-web is painful. It requires a lot of manual work with the protobuf compiler, including dealing with plugins from three different projects. Here's a no-install, all-in-one solution using temporary Docker containers.
 
@@ -18,7 +18,7 @@ requires (1) the `protoc` compiler (`protoc`), (2) the `protoc-gen-js` plugin (`
 
 ### How does it do it?
 
-This project builds a temporary Docker container with all the binaries, then uses the local (i.e., host) `.proto` files, uses them for code generation and then copies the generated files back to the host.
+This project builds a temporary Docker container with all the binaries, then uses the local (i.e., host) `.proto` files for code generation finally copies the generated files back to the host.
 
 ### Usage
 
@@ -26,7 +26,7 @@ This project builds a temporary Docker container with all the binaries, then use
 ./protogen.sh <proto_input_dir> <proto_output_dir>
 ```
 
-- `<proto_input_dir>`: Relative input directory with `.proto` files. Defaults to `gen/proto`
+- `<proto_input_dir>`: Relative input directory with `.proto` files. Required.
 - `<proto_output_dir>`: Relative directory to save the output `.proto` files. Defaults to `gen/proto`
 
 ### Examples
