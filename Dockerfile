@@ -21,7 +21,7 @@ RUN chmod +x protobuf-js/bin/protoc-gen-js
 
 # gRPC-web: https://github.com/grpc/grpc-web/tree/master#code-generator-plugin
 
-RUN  curl -L -o protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64
+RUN curl -L -o protoc-gen-grpc-web https://github.com/grpc/grpc-web/releases/download/1.4.2/protoc-gen-grpc-web-1.4.2-linux-x86_64
 RUN chmod +x protoc-gen-grpc-web
 RUN mkdir grpc-web
 RUN mv protoc-gen-grpc-web grpc-web/protoc-gen-grpc-web

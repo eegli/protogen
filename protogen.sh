@@ -24,6 +24,9 @@ I=protogen
 
 echo "Generating TS proto files..."
 
+# Remove old container and image
+docker rmi $I >/dev/null 2>&1
+
 docker build -t $I .
 
 docker run -t -d --rm --name $C $I
